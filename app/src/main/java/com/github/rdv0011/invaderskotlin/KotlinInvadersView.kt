@@ -289,12 +289,12 @@ class KotlinInvadersView(context: Context, private val size: Point): SurfaceView
             for (invader in invaders) {
                 if (invader.isVisible) {
                     if (uhOrOh) {
-                        canvas.drawBitmap(Invader.bitmap1!!,
+                        canvas.drawBitmap(Invader.flapUpSprite,
                             invader.position.left,
                             invader.position.top,
                             paint)
                     } else {
-                        canvas.drawBitmap(Invader.bitmap2!!,
+                        canvas.drawBitmap(Invader.flapDownSprite,
                             invader.position.left,
                             invader.position.top,
                             paint)

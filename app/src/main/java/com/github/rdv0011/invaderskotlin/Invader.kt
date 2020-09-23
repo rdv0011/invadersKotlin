@@ -28,38 +28,44 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
     var isVisible = true
 
     companion object {
-        var bitmap1: Bitmap? = null
-        var bitmap2: Bitmap? = null
+        private var sprites: Array<Bitmap> = emptyArray()
+        val flapDownSprite: Bitmap
+        get() = sprites[0]
+        val flapUpSprite: Bitmap
+        get() = sprites[1]
         // Keep track of the number of instances
         // The are active
         var numberOfInvaders = 0
     }
 
     init {
-        // Initialize the bitmaps
-        val invader1Resource = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.invader1
-        )
-        val invader2Resource = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.invader2
-        )
-        // Stretch the first bitmap to a size
-        // Appropriate for the screen resolution
-        bitmap1 = Bitmap.createScaledBitmap(
-            invader1Resource,
-            width.toInt(),
-            height.toInt(),
-            false
-        )
+        if (sprites.isEmpty()) {
+            // Initialize the bitmaps
+            val invader1Resource = BitmapFactory.decodeResource(
+                context.resources,
+                R.drawable.invader1
+            )
+            val invader2Resource = BitmapFactory.decodeResource(
+                context.resources,
+                R.drawable.invader2
+            )
+            // Stretch the first bitmap to a size
+            // Appropriate for the screen resolution
+            val bitmap1 = Bitmap.createScaledBitmap(
+                invader1Resource,
+                width.toInt(),
+                height.toInt(),
+                false
+            )
 
-        bitmap2 = Bitmap.createScaledBitmap(
-            invader2Resource,
-            width.toInt(),
-            height.toInt(),
-            false
-        )
+            val bitmap2 = Bitmap.createScaledBitmap(
+                invader2Resource,
+                width.toInt(),
+                height.toInt(),
+                false
+            )
+            sprites = arrayOf(bitmap1, bitmap2)
+        }
         numberOfInvaders++
     }
 
